@@ -3,72 +3,50 @@
 class MkvTrackEditor < Formula
   desc "Edit MKV tracks with profiles and Radarr/Sonarr-compatible naming"
   homepage "https://github.com/bugsbunny-25/homebrew-tap"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
 
-  # The app shells out to mkvmerge/mkvpropedit and mediainfo for every
-  # analysis and edit.
+  # Linked: fontconfig. Loaded at runtime: D-Bus (the file dialogs talk to
+  # xdg-desktop-portal through it) and the windowing/GL stack: X11/XCB,
+  # xkbcommon, Wayland and EGL/GL (Mesa). mkvtoolnix and media-info: the app
+  # shells out to mkvmerge/mkvpropedit and mediainfo for every analysis and
+  # edit. On macOS the cask installs the app instead:
+  #   brew install --cask mkv-track-editor
+  depends_on "dbus"
+  depends_on "fontconfig"
+  depends_on "libx11"
+  depends_on "libxcb"
+  depends_on "libxcursor"
+  depends_on "libxi"
+  depends_on "libxkbcommon"
+  depends_on "libxrender"
+  depends_on :linux
   depends_on "media-info"
+  depends_on "mesa"
   depends_on "mkvtoolnix"
-
-  on_macos do
-    depends_on arch: :arm64
-
-    on_arm do
-      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.0/mkv-track-editor-0.1.0-macos-arm64.tar.gz"
-      sha256 "cc24ed3a538bac6dcde6edff00d42325c8c9308eea41ea53c88e291c014afef9"
-    end
-  end
+  depends_on "wayland"
 
   on_linux do
-    # Linked: fontconfig. Loaded at runtime: D-Bus (the file dialogs talk
-    # to xdg-desktop-portal through it) and the windowing/GL stack: X11/XCB,
-    # xkbcommon, Wayland and EGL/GL (Mesa).
-    depends_on "dbus"
-    depends_on "fontconfig"
-    depends_on "libx11"
-    depends_on "libxcb"
-    depends_on "libxcursor"
-    depends_on "libxi"
-    depends_on "libxkbcommon"
-    depends_on "libxrender"
-    depends_on "mesa"
-    depends_on "wayland"
-
     on_intel do
-      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.0/mkv-track-editor-0.1.0-linux-x86_64.tar.gz"
-      sha256 "c686470dc6a41495e467e4e40134ef7e6b9aa3aefa6baf8be1f10e3eb98d962c"
+      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.1/mkv-track-editor-0.1.1-linux-x86_64.tar.gz"
+      sha256 "705eb6bde4ceadbb2f6cf25d2d3f6c3c352016850bbcc751523d52e001839729"
     end
     on_arm do
-      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.0/mkv-track-editor-0.1.0-linux-arm64.tar.gz"
-      sha256 "0121ae5c03e362b5d4df7b4501e4b7132fc483075f96c38eb79b813feebc1cef"
+      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.1/mkv-track-editor-0.1.1-linux-arm64.tar.gz"
+      sha256 "78f39cfcfd57bcf8d4b67f67247f89fd028b93b5bebfbbfd03e71e7f6809298f"
     end
   end
 
   def install
-    if OS.mac?
-      prefix.install "MKV Track Editor.app"
-      bin.install_symlink prefix/"MKV Track Editor.app/Contents/MacOS/mkv-track-editor"
-    else
-      bin.install "mkv-track-editor"
-      # The archive is built against the system glibc; point it at Homebrew's
-      # loader and libraries (as bottles are) so the dependencies above are
-      # the ones it loads.
-      ld_so = HOMEBREW_PREFIX/"lib/ld.so"
-      (bin/"mkv-track-editor").patch!(
-        interpreter: (ld_so.to_s if ld_so.readable?),
-        rpath:       (HOMEBREW_PREFIX/"lib").to_s,
-      )
-    end
-  end
-
-  def caveats
-    on_macos do
-      <<~CAVEATS
-        To launch MKV Track Editor from Finder or the Dock:
-          ln -sf "#{opt_prefix}/MKV Track Editor.app" /Applications/
-      CAVEATS
-    end
+    bin.install "mkv-track-editor"
+    # The archive is built against the system glibc; point it at Homebrew's
+    # loader and libraries (as bottles are) so the dependencies above are the
+    # ones it loads.
+    ld_so = HOMEBREW_PREFIX/"lib/ld.so"
+    (bin/"mkv-track-editor").patch!(
+      interpreter: (ld_so.to_s if ld_so.readable?),
+      rpath:       (HOMEBREW_PREFIX/"lib").to_s,
+    )
   end
 
   test do
