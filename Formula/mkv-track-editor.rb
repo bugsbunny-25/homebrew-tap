@@ -16,7 +16,7 @@ class MkvTrackEditor < Formula
 
     on_arm do
       url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.0/mkv-track-editor-0.1.0-macos-arm64.tar.gz"
-      sha256 "6ac4a2ef147e31ac7d362d3ff994787604afecf7b32672ccae8081b406f31a95"
+      sha256 "cc24ed3a538bac6dcde6edff00d42325c8c9308eea41ea53c88e291c014afef9"
     end
   end
 
@@ -37,11 +37,11 @@ class MkvTrackEditor < Formula
 
     on_intel do
       url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.0/mkv-track-editor-0.1.0-linux-x86_64.tar.gz"
-      sha256 "a5b7d59994358aac4f986a5d4438db200b63d48592a4549deda40b631d8f62cd"
+      sha256 "c686470dc6a41495e467e4e40134ef7e6b9aa3aefa6baf8be1f10e3eb98d962c"
     end
     on_arm do
       url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.1.0/mkv-track-editor-0.1.0-linux-arm64.tar.gz"
-      sha256 "28c11057fd266094803cdae667f2ff8b3ee005a2e00f82743139497e3f95094f"
+      sha256 "0121ae5c03e362b5d4df7b4501e4b7132fc483075f96c38eb79b813feebc1cef"
     end
   end
 
