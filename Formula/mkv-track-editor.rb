@@ -3,7 +3,7 @@
 class MkvTrackEditor < Formula
   desc "Edit MKV tracks with profiles and Radarr/Sonarr-compatible naming"
   homepage "https://github.com/bugsbunny-25/homebrew-tap"
-  version "0.2.0"
+  version "0.2.1"
   license "MIT"
 
   # Linked: fontconfig. Loaded at runtime: D-Bus (the file dialogs talk to
@@ -28,12 +28,12 @@ class MkvTrackEditor < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.2.0/mkv-track-editor-0.2.0-linux-x86_64.tar.gz"
-      sha256 "d9d3855f8ea41107b546feea3e9116ca87792dcdcc134cb986f4bd39d1a68e7b"
+      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.2.1/mkv-track-editor-0.2.1-linux-x86_64.tar.gz"
+      sha256 "106db6d7db8c9c905b0a56d44a3ede6dcf93cac5f198f9945817f3ce4531dc1b"
     end
     on_arm do
-      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.2.0/mkv-track-editor-0.2.0-linux-arm64.tar.gz"
-      sha256 "fb76b8a30f3b06ec2750444ddd59b6fc74295cd0284448b77449b42da30632be"
+      url "https://github.com/bugsbunny-25/homebrew-tap/releases/download/mkv-track-editor-v0.2.1/mkv-track-editor-0.2.1-linux-arm64.tar.gz"
+      sha256 "ec94f5e08386ca95acffe0effaae5be28d38a6b01ad4b2e9412be43ac6da0acd"
     end
   end
 
